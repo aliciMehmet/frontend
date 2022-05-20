@@ -1,23 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+import Login from "./components/Login";
+import AuthContextProvider from "./context/AuthContext";
+import "./App.css"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+import About from "./components/About";
+import Topics from "./components/Topics";
+import Home from "./components/Home";
+import React from "react";
+import Dashboard from "./components/Dashboard";
+import CustomerHome from "./components/CustomerHome";
+import ItemDetail from "./components/ItemDetail";
+import ItemContextProvider from "./context/ItemContext";
 
 function App() {
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ToastContainer />
+      <AuthContextProvider>
+      <ItemContextProvider>
+      <Dashboard />
+      <Router>
+      <div>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/topics">Topics</Link>
+          </li>
+        </ul>
+        
+        <Routes>
+          <Route path="/login" element={<Login/>} />
+          <Route path="/customer/"  element={<CustomerHome/>} />
+          <Route path="/customer/detail/:itemId" element={<ItemDetail/>} />
+          <Route path="/about" element={<About/>} />
+          <Route path="/topics" element={<Topics/>} />
+          <Route path="/" element={<Home/>} />
+        </Routes>
+       
+      </div>
+    </Router>
+    
+    </ItemContextProvider>
+    </AuthContextProvider>
     </div>
   );
 }
