@@ -14,7 +14,7 @@ import Topics from "./components/Topics";
 import Home from "./components/Home";
 import React from "react";
 import Dashboard from "./components/Dashboard";
-import CustomerHome from "./components/CustomerHome";
+import CustomerHome from "./components/Home/CustomerHome";
 import ItemDetail from "./components/ItemDetail";
 import ItemContextProvider from "./context/ItemContext";
 

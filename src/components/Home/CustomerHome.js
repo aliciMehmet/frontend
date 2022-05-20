@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom';
-import { ItemContext } from '../context/ItemContext';
-import ProductService from '../services/ProductService';
-import Category from './Category';
+import { ItemContext } from '../../context/ItemContext';
+import ProductService from '../../services/ProductService';
+import Category from '../Category';
 
 function CustomerHome() {
 

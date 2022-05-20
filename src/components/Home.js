@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { AuthContext } from '../context/AuthContext'
-import KitchenHome from './KitchenHome';
+import KitchenHome from './Home/KitchenHome';
 import Login from "./Login";
-import WaiterHome from './WaiterHome';
+import WaiterHome from './Home/WaiterHome';
 
 function Home() {
 
