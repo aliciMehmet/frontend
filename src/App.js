@@ -10,7 +10,6 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import About from "./components/About";
 import Topics from "./components/Topics";
 import Home from "./components/Home";
 import React from "react";
@@ -34,9 +33,6 @@ function App() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
             <Link to="/topics">Topics</Link>
           </li>
         </ul>
@@ -45,7 +41,6 @@ function App() {
           <Route path="/login" element={<Login/>} />
           <Route path="/customer/"  element={<CustomerHome/>} />
           <Route path="/customer/detail/:itemId" element={<ItemDetail/>} />
-          <Route path="/about" element={<About/>} />
           <Route path="/topics" element={<Topics/>} />
           <Route path="/" element={<Home/>} />
         </Routes>
