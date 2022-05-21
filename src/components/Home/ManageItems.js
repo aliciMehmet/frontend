@@ -52,7 +52,7 @@ function Denem() {
                 <div>
                   <div>Item Price</div>
                   <Input placeholder={item.price}></Input> sd
-                </div>
+                </div>sd
                 <button onClick={() => updateItem()} style={{borderRadius:"16px"}}>Update</button>
               </div>
             )}
