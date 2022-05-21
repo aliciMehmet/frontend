@@ -17,6 +17,7 @@ import Dashboard from "./components/Dashboard";
 import CustomerHome from "./components/Home/CustomerHome";
 import ItemDetail from "./components/ItemDetail";
 import ItemContextProvider from "./context/ItemContext";
+import Denem from "./components/Home/ManageItems";
 
 function App() {
   
@@ -25,27 +26,19 @@ function App() {
       <ToastContainer />
       <AuthContextProvider>
       <ItemContextProvider>
-      <Dashboard />
       <Router>
-      <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/topics">Topics</Link>
-          </li>
-        </ul>
+        
         
         <Routes>
           <Route path="/login" element={<Login/>} />
           <Route path="/customer/"  element={<CustomerHome/>} />
           <Route path="/customer/detail/:itemId" element={<ItemDetail/>} />
           <Route path="/topics" element={<Topics/>} />
+          <Route path="/sdfsdf" element={<Denem/>} />
           <Route path="/" element={<Home/>} />
+
         </Routes>
        
-      </div>
     </Router>
     
     </ItemContextProvider>
