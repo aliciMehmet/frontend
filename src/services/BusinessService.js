@@ -11,10 +11,10 @@ export default class BusinessService{
     }
 
     updateItem(item){
-        return axios.post("http://localhost:8080/admin/updateItem",{
-            /*burada item objesini döndür*/ 
+        return axios.post("http://localhost:8080/admin/updateItem",
+           item
             
-        })
+        )
     }
     
 }
