@@ -47,13 +47,13 @@ function Denem() {
               <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "5%" }}>
                 <div>
                   <div>Item name</div>
-                  <Input id='name' placeholder={item.name}></Input>
+                  <Input placeholder={item.name}></Input>
                 </div>
                 <div>
                   <div>Item Price</div>
                   <Input placeholder={item.price}></Input>
                 </div>
-                <button onClick={() => updateItem(document.getElementById("name").value,item.id)} style={{borderRadius:"16px"}}>Update</button>
+                <button onClick={() => updateItem()} style={{borderRadius:"16px"}}>Update</button>
               </div>
             )}
 
