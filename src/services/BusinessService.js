@@ -16,5 +16,18 @@ export default class BusinessService{
             
         )
     }
+
+    deleteItem(item){
+        return axios.post("http://localhost:8080/admin/deleteItem",
+        item
+         
+     )
+    }
+    addItem(item){
+        return axios.post("http://localhost:8080/admin/addItem",
+        item
+         
+     )
+    }
     
 }

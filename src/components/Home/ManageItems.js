@@ -12,6 +12,18 @@ function Denem() {
   const [products, setProducts] = useState([])
   const { user } = React.useContext(AuthContext)
 
+  const deleteItem = (e, item) => {
+    e.preventDefault();
+    if (window.confirm('Are you sure?')) {
+      console.log(item.id);
+      let businessService = new BusinessService();
+      businessService.deleteItem(item).then(result => toast.success("Item deleted successfully"))
+
+    }
+
+    return;
+  }
+
   const updateItem = (e, item) => {
     e.preventDefault();
 
@@ -46,6 +58,11 @@ function Denem() {
           return (
             <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
               <h1 style={{ textAlign: "center", margin: "5% 0" }}>{a}</h1>
+              <div className='d-flex justify-content-center'> <Link to="/addItem" state={{ businessId:products[a][0].businessId, category: a }}>
+              <button className='btn btn-primary align-center'>Add item for this category</button>
+              </Link></div> 
+              
+
               {products[a] && products[a].map(item =>
                 <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "5%" }}>
 
@@ -55,7 +72,7 @@ function Denem() {
                         Item Name
                       </Form.Label>
                       <Form.Control
-                      defaultValue={item.name}
+                        defaultValue={item.name}
                         type="text"
                         name="ItemName"
                         required
@@ -69,7 +86,7 @@ function Denem() {
                         Item Price
                       </Form.Label>
                       <Form.Control
-                      defaultValue={item.price}
+                        defaultValue={item.price}
                         type="text"
                         name="ItemPrice"
                         required
@@ -83,7 +100,7 @@ function Denem() {
                         Item Stock
                       </Form.Label>
                       <Form.Control
-                      defaultValue={item.stock}
+                        defaultValue={item.stock}
                         type="text"
                         name="ItemStock"
                         required
@@ -96,6 +113,7 @@ function Denem() {
                     <Form.Group><Button variant="primary" type="submit">
                       Update
                     </Button></Form.Group>
+                    <td><button className="btn btn-warning" onClick={(e) => deleteItem(e, item)}>Delete</button></td>
 
                   </Form>
 

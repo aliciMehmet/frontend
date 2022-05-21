@@ -3,6 +3,9 @@ import AuthContextProvider from "./context/AuthContext";
 import "./App.css"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './boostrap.css';
+
+
 
 import {
   BrowserRouter as Router,
@@ -18,6 +21,7 @@ import CustomerHome from "./components/Home/CustomerHome";
 import ItemDetail from "./components/ItemDetail";
 import ItemContextProvider from "./context/ItemContext";
 import Denem from "./components/Home/ManageItems";
+import AddItem from "./components/Home/AddItem";
 
 function App() {
   
@@ -35,6 +39,8 @@ function App() {
           <Route path="/customer/detail/:itemId" element={<ItemDetail/>} />
           <Route path="/topics" element={<Topics/>} />
           <Route path="/sdfsdf" element={<Denem/>} />
+          <Route path="/addItem" element={<AddItem/>} />
+
           <Route path="/" element={<Home/>} />
 
         </Routes>
