@@ -12,6 +12,22 @@ function Denem() {
   const [products, setProducts] = useState([])
   const { user } = React.useContext(AuthContext)
 
+  const getWaiters=()=>{
+    let businessService = new BusinessService();
+
+
+    businessService.getWaiters(user.token).then(result => {
+      if (result.data != null) {
+        
+        console.log(result.data)
+
+
+      }})}
+
+
+
+  
+
   const deleteItem = (e, item) => {
     e.preventDefault();
     if (window.confirm('Are you sure?')) {
@@ -52,6 +68,7 @@ function Denem() {
 
   return (
     <div>
+      <button className="btn btn-warning" onClick={() => getWaiters()}>Delete</button>
 
       <div>
         {categories.length > 0 && categories.map(a => {

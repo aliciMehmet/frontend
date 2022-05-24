@@ -15,7 +15,7 @@ import {
 } from "react-router-dom";
 import Topics from "./components/Topics";
 import Home from "./components/Home";
-import React from "react";
+import React, { useEffect } from "react";
 import Dashboard from "./components/Dashboard";
 import CustomerHome from "./components/Home/CustomerHome";
 import ItemDetail from "./components/ItemDetail";
@@ -24,6 +24,7 @@ import Denem from "./components/Home/ManageItems";
 import AddItem from "./components/Home/AddItem";
 
 function App() {
+
   
   return (
     <div className="App">
