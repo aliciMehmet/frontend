@@ -6,23 +6,13 @@ import BusinessService from '../../services/BusinessService';
 import ProductService from '../../services/ProductService';
 import { Modal, Button, Row, Col, Form } from 'react-bootstrap';
 import { toast } from 'react-toastify';
+import { BusinessNavi } from '../BusinessNavi';
 
 function Denem() {
   const [categories, setCategories] = useState([])
   const [products, setProducts] = useState([])
   const { user } = React.useContext(AuthContext)
 
-  const getWaiters=()=>{
-    let businessService = new BusinessService();
-
-
-    businessService.getWaiters(user.token).then(result => {
-      if (result.data != null) {
-        
-        console.log(result.data)
-
-
-      }})}
 
 
 
@@ -68,15 +58,15 @@ function Denem() {
 
   return (
     <div>
-      <button className="btn btn-warning" onClick={() => getWaiters()}>Delete</button>
+      <BusinessNavi/>
 
-      <div>
+      <div className='container'>
         {categories.length > 0 && categories.map(a => {
           return (
-            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
-              <h1 style={{ textAlign: "center", margin: "5% 0" }}>{a}</h1>
+            <div  className='row' style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+              <h1 style={{ textAlign: "center", margin: "2% 0" }}>{a}</h1>
               <div className='d-flex justify-content-center'> <Link to="/addItem" state={{ businessId:products[a][0].businessId, category: a }}>
-              <button className='btn btn-primary align-center'>Add item for this category</button>
+              <button style={{  marginBottom: "50px" }} className='btn btn-primary align-center'>Add item for this category</button>
               </Link></div> 
               
 
@@ -84,8 +74,8 @@ function Denem() {
                 <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "5%" }}>
 
                   <Form onSubmit={(e) => updateItem(e, item)}>
-                    <Form.Group controlId="ItemName">
-                      <Form.Label>
+                    <Form.Group className='d-flex container' controlId="ItemName">
+                      <Form.Label className=''>
                         Item Name
                       </Form.Label>
                       <Form.Control
@@ -98,7 +88,7 @@ function Denem() {
 
 
                     </Form.Group>
-                    <Form.Group controlId="ItemPrice">
+                    <Form.Group className='d-flex' controlId="ItemPrice">
                       <Form.Label>
                         Item Price
                       </Form.Label>
@@ -112,7 +102,7 @@ function Denem() {
 
                     </Form.Group>
 
-                    <Form.Group controlId="ItemStock">
+                    <Form.Group className='d-flex m-auto' controlId="ItemStock">
                       <Form.Label>
                         Item Stock
                       </Form.Label>
@@ -126,11 +116,20 @@ function Denem() {
 
                     </Form.Group>
 
-
-                    <Form.Group><Button variant="primary" type="submit">
+                    <div className='row justify-content-center'>
+                    <div className='col-3'><Form.Group className=''><Button variant="primary" type="submit">
                       Update
-                    </Button></Form.Group>
+                    </Button></Form.Group></div>
+                    <div className='col-3'>
                     <td><button className="btn btn-warning" onClick={(e) => deleteItem(e, item)}>Delete</button></td>
+                    </div>
+
+                    </div>
+                      
+                    
+                    
+                    
+                    
 
                   </Form>
 

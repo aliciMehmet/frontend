@@ -22,6 +22,8 @@ import ItemDetail from "./components/ItemDetail";
 import ItemContextProvider from "./context/ItemContext";
 import Denem from "./components/Home/ManageItems";
 import AddItem from "./components/Home/AddItem";
+import OnlineWaiters from "./components/Home/OnlineWaiters";
+import AllWaiters from "./components/Home/AllWaiters";
 
 function App() {
 
@@ -41,6 +43,10 @@ function App() {
           <Route path="/topics" element={<Topics/>} />
           <Route path="/sdfsdf" element={<Denem/>} />
           <Route path="/addItem" element={<AddItem/>} />
+          <Route path="/onlineWaiters" element={<OnlineWaiters/>} />
+          <Route path="/allWaiters" element={<AllWaiters/>} />
+
+
 
           <Route path="/" element={<Home/>} />
 
