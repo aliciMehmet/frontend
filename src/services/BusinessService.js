@@ -44,5 +44,12 @@ export default class BusinessService{
             }
         })
     }
+    getAllOrders(token){
+        return axios.get("http://localhost:8080/admin/getAllOrders",{
+            params:{
+                token:token
+            }
+        })
+    }
     
 }

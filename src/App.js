@@ -24,6 +24,7 @@ import Denem from "./components/Home/ManageItems";
 import AddItem from "./components/Home/AddItem";
 import OnlineWaiters from "./components/Home/OnlineWaiters";
 import AllWaiters from "./components/Home/AllWaiters";
+import AllOrders from "./components/Home/AllOrders";
 
 function App() {
 
@@ -45,6 +46,8 @@ function App() {
           <Route path="/addItem" element={<AddItem/>} />
           <Route path="/onlineWaiters" element={<OnlineWaiters/>} />
           <Route path="/allWaiters" element={<AllWaiters/>} />
+          <Route path="/allOrders" element={<AllOrders/>} />
+
 
 
 

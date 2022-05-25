@@ -26,6 +26,8 @@ export class BusinessNavi extends Component
 					to="/allWaiters">Tables Status</NavLink>
 					<NavLink className="d-inline p-2 bg-dark text-white"
 					to="/allWaiters">Orders Status</NavLink>
+					<NavLink className="d-inline p-2 bg-dark text-white"
+					to="/allOrders">All Orders</NavLink>
 				</Nav>
 				</Navbar.Collapse>
 
