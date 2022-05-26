@@ -22,7 +22,6 @@ import ItemDetail from "./components/ItemDetail";
 import ItemContextProvider from "./context/ItemContext";
 import Denem from "./components/Home/ManageItems";
 import AddItem from "./components/Home/AddItem";
-import TablesStatus from "./components/Home/TablesStatus";
 import OnlineWaiters from "./components/Home/OnlineWaiters";
 import AllWaiters from "./components/Home/AllWaiters";
 import AllOrders from "./components/Home/AllOrders";
@@ -44,7 +43,6 @@ function App() {
           <Route path="/customer/detail/:itemId" element={<ItemDetail/>} />
           <Route path="/topics" element={<Topics/>} />
           <Route path="/sdfsdf" element={<Denem/>} />
-          <Route path="/tablesStatus" element={<TablesStatus />} />
           <Route path="/addItem" element={<AddItem/>} />
           <Route path="/onlineWaiters" element={<OnlineWaiters/>} />
           <Route path="/allWaiters" element={<AllWaiters/>} />
