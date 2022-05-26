@@ -37,5 +37,27 @@ export default class BusinessService{
          
      )
     }
+    getWaiters(token){
+        return axios.get("http://localhost:8080/admin/getOnlineWaiters",{
+            params:{
+                token:token
+            }
+        })
+    }
+    getEmployee(token,role){
+        return axios.get("http://localhost:8080/admin/getEmployee",{
+            params:{
+                token:token,
+                role:role
+            }
+        })
+    }
+    getAllOrders(token){
+        return axios.get("http://localhost:8080/admin/getAllOrders",{
+            params:{
+                token:token
+            }
+        })
+    }
     
 }

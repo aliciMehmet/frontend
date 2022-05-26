@@ -15,7 +15,7 @@ import {
 } from "react-router-dom";
 import Topics from "./components/Topics";
 import Home from "./components/Home";
-import React from "react";
+import React, { useEffect } from "react";
 import Dashboard from "./components/Dashboard";
 import CustomerHome from "./components/Home/CustomerHome";
 import ItemDetail from "./components/ItemDetail";
@@ -23,8 +23,12 @@ import ItemContextProvider from "./context/ItemContext";
 import Denem from "./components/Home/ManageItems";
 import AddItem from "./components/Home/AddItem";
 import TablesStatus from "./components/Home/TablesStatus";
+import OnlineWaiters from "./components/Home/OnlineWaiters";
+import AllWaiters from "./components/Home/AllWaiters";
+import AllOrders from "./components/Home/AllOrders";
 
 function App() {
+
   
   return (
     <div className="App">
@@ -42,6 +46,12 @@ function App() {
           <Route path="/sdfsdf" element={<Denem/>} />
           <Route path="/tablesStatus" element={<TablesStatus />} />
           <Route path="/addItem" element={<AddItem/>} />
+          <Route path="/onlineWaiters" element={<OnlineWaiters/>} />
+          <Route path="/allWaiters" element={<AllWaiters/>} />
+          <Route path="/allOrders" element={<AllOrders/>} />
+
+
+
 
           <Route path="/" element={<Home/>} />
 
