@@ -14,7 +14,7 @@ function BusinessHome() {
     <div>
         <div id='business_header'>
             <Link to={"sdfsdf"}>Manage Items</Link>
-            <Link to={"sdfsdf"}>Tables Status</Link>
+            <Link to={"tablesStatus"}>Tables Status</Link>
 
         </div>
     </div>

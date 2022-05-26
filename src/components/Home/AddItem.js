@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Navigate,Link, useLocation, useNavigate  } from 'react-router-dom';
+import { Navigate, Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import BusinessService from '../../services/BusinessService';
 import ProductService from '../../services/ProductService';
@@ -7,38 +7,40 @@ import { Modal, Button, Row, Col, Form } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 function AddItem(props) {
     const location = useLocation()
-  const { category } = location.state;
-  const { businessId } = location.state
+    const { category } = location.state;
+    const { businessId } = location.state
 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log(category)
-    console.log(businessId)
+    useEffect(() => {
+        console.log(category)
+        console.log(businessId)
 
-  })
+    })
 
-    const handleAddItem=(e)=>{
+    const handleAddItem = (e) => {
         e.preventDefault();
         console.log(props.category)
 
 
-        let item ={
-            businessId:businessId,
+        let item = {
+            businessId: businessId,
             name: e.target.ItemName.value,
-            category:category,
-            price:e.target.ItemPrice.value,
-            stock:e.target.ItemStock.value};
-         console.log(item);   
-        let businessService = new BusinessService();
-      businessService.addItem(item).then(result => {
-          toast.success("Item added successfully");
-          navigate("/sdfsdf");
+            category: category,
+            price: e.target.ItemPrice.value,
+            stock: e.target.ItemStock.value
+        };
         
+        console.log(item);
+        let businessService = new BusinessService();
+        businessService.addItem(item).then(result => {
+            toast.success("Item added successfully");
+            navigate("/sdfsdf");
+
         })
 
     }
-    
+
 
     return (
         <div className='container'>
@@ -86,7 +88,7 @@ function AddItem(props) {
                 <Form.Group><Button variant="primary" type="submit">
                     Add
                 </Button></Form.Group>
-              
+
 
             </Form>
 

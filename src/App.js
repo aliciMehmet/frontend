@@ -22,6 +22,7 @@ import ItemDetail from "./components/ItemDetail";
 import ItemContextProvider from "./context/ItemContext";
 import Denem from "./components/Home/ManageItems";
 import AddItem from "./components/Home/AddItem";
+import TablesStatus from "./components/Home/TablesStatus";
 
 function App() {
   
@@ -39,6 +40,7 @@ function App() {
           <Route path="/customer/detail/:itemId" element={<ItemDetail/>} />
           <Route path="/topics" element={<Topics/>} />
           <Route path="/sdfsdf" element={<Denem/>} />
+          <Route path="/tablesStatus" element={<TablesStatus />} />
           <Route path="/addItem" element={<AddItem/>} />
 
           <Route path="/" element={<Home/>} />

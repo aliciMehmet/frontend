@@ -10,6 +10,14 @@ export default class BusinessService{
         })
     }
 
+    getTablesStatus(token){
+        return axios.get("http://localhost:8080/admin/getTablesStatus",{
+            params:{
+                token:token
+            }
+        })
+    }
+
     updateItem(item){
         return axios.post("http://localhost:8080/admin/updateItem",
            item

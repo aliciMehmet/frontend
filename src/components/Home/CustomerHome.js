@@ -22,12 +22,29 @@ function CustomerHome() {
 
     const [products,setProducts] = useState([])
     const [businessId,setBusinessId] = useState(0)
+    const [tableId,setTableId] = useState(0)
     const [categories,setCategories] = useState([])
+    const [socket, setSocket] = useState(null);
 
-    const {addProducts} = React.useContext(ItemContext)
+
+    const {addProducts} = React.useContext(ItemContext) 
 
     useEffect(() => {
         setBusinessId(getQueryVariable("businessId")); 
+        setTableId(getQueryVariable("tableId")); 
+
+       !socket && setSocket( new WebSocket('ws://localhost:8080/websocket'))
+
+        var obj = {
+            "command":"SEATTABLE",
+            "cafeId":businessId,
+            "tableId":tableId
+          }
+        
+        socket && socket.readyState == 1 &&  socket.send(JSON.stringify(obj));
+
+        console.log(socket)
+
         let productService = new ProductService();
         productService.getAllProducts(businessId).then(result => {
             if(result.data != null){
@@ -38,7 +55,6 @@ function CustomerHome() {
               Object.keys(result.data.data).forEach(key =>{
                   for(var i = 0; i < result.data.data[key].length; i++){
                     addProducts(result.data.data[key][i])
-                    console.log(result.data.data[key][i])
                   }
                 
               })
@@ -46,7 +62,7 @@ function CustomerHome() {
         })
 
             
-    }, [businessId]);
+    }, [socket]);
 
   
     return(
