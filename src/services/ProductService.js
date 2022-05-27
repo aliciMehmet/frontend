@@ -10,11 +10,12 @@ export default class ProductService{
         })
     }
 
-    makeOrder(businessId,itemName,count){
+    makeOrder(businessId,tableId,itemId,count){
         return axios.post("http://localhost:8080/customer/makeOrder",{
             
-                businessId:1,
-                itemName:itemName,
+                businessId:businessId,
+                tableId:tableId,
+                itemId:itemId,
                 count:count
             
         })

@@ -59,5 +59,13 @@ export default class BusinessService{
             }
         })
     }
+
+    getWaitingOrders(token){
+        return axios.get("http://localhost:8080/admin/getWaitingOrders",{
+            params:{
+                token:token
+            }
+        })
+    }
     
 }

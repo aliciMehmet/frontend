@@ -1,0 +1,17 @@
+.parent-wrapper {
+    height:100%;
+    width:100%;
+    border: 1px solid black;
+}
+.parent {
+    display: flex;
+    font-size: 0;
+    grid-template-columns: 25% 25%;
+}
+.child {
+    background:blue;
+    flex-grow: 1;
+    height:100px;
+    margin: 10px;
+    margin-bottom: 0;
+}

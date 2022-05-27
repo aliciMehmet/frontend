@@ -25,6 +25,7 @@ import AddItem from "./components/Home/AddItem";
 import OnlineWaiters from "./components/Home/OnlineWaiters";
 import AllWaiters from "./components/Home/AllWaiters";
 import AllOrders from "./components/Home/AllOrders";
+import CustomerContextProvider from "./context/CustomerContext";
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
       <ToastContainer />
       <AuthContextProvider>
       <ItemContextProvider>
+        <CustomerContextProvider>
       <Router>
         
         
@@ -56,7 +58,7 @@ function App() {
         </Routes>
        
     </Router>
-    
+    </CustomerContextProvider>
     </ItemContextProvider>
     </AuthContextProvider>
     </div>

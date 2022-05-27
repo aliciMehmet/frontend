@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
+import BusinessService from '../../services/BusinessService';
+import "./KitchenHome.css"
 
 function KitchenHome({user}) {
 
@@ -10,10 +12,30 @@ function KitchenHome({user}) {
     };
 
     const [socket, setSocket] = useState(null);
+    const [orders,setOrders] = useState([])
+    
+    useEffect(() => { 
+       setSocket( new WebSocket('ws://localhost:8080/websocket')) 
 
-    useEffect(() => {
-      setSocket( new WebSocket('ws://localhost:8080/websocket'))
+      let businessService = new BusinessService();
+      businessService.getWaitingOrders(user.token).then(result => setOrders(result.data.data))
+      console.log("first effect")
+
     }, []);
+
+    /*console.log("naber")
+    socket && socket.addEventListener('message',function(event){
+      let obj =  JSON.parse(event.data)
+       console.log(obj)
+      let notification = obj.count + " X " + obj.itemName
+       toast.success(notification,{
+           autoClose:false
+       });
+       setOrders(prevState => [...prevState,obj])
+       console.log(orders)
+     })*/
+
+      
   
   const openSession = () => {
     var obj = {
@@ -22,17 +44,20 @@ function KitchenHome({user}) {
     }
   
     socket.send(JSON.stringify(obj));
-  }
-  
-    socket && socket.addEventListener('message',function(event){
-      console.log("event : ",event.data)
-     let obj =  JSON.parse(event.data)
 
-     console.log(obj.command)
-      toast.success("sdhufsdf",{
-          autoClose:false
-      });
-    })
+    socket.addEventListener('message',function(event){
+      let obj =  JSON.parse(event.data)
+       console.log(obj)
+      let notification = obj.count + " X " + obj.itemName
+       toast.success(notification,{
+           autoClose:false
+       });
+       setOrders(prevState => [...prevState,obj])
+       console.log(orders)
+     })
+
+  }
+
 
     const sendReadyMessage = () => {
         var obj = {
@@ -44,11 +69,24 @@ function KitchenHome({user}) {
       }
 
   return (
-    <div>
+    <div id='kitchen_home'>
     
     KITCHEN
     <button onClick={()=> openSession()}>START TO WORK</button>
-    <button onClick={()=> sendReadyMessage()}>ready</button>
+    
+
+    <div id='waiting_orders'>
+      {orders.map(order => {
+        return(
+          <div id='order_container'>
+            <div>Item Name: {order.itemName}</div>
+            <div>Count: {order.count}</div>
+            <div>Table Number: {order.tableId}</div>
+            <button onClick={()=> sendReadyMessage()}>ready</button>
+            </div> 
+        )
+      })}
+    </div>
     
     </div>
   )

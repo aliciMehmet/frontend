@@ -16,9 +16,12 @@ function Home() {
     return <Login />
   }
   else if(user.role == "WAITER"){
-     return ( <div>
-        <BusinessNavi/> <WaiterHome user={user} />
-     </div> )
+     return ( 
+     <div>
+        <BusinessNavi/> 
+        <WaiterHome user={user} />
+     </div> 
+     )
   }
   else if(user.role == "ADMIN"){
     return( 

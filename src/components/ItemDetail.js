@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { CustomerContext } from '../context/CustomerContext'
 import { ItemContext } from '../context/ItemContext'
 import ProductService from '../services/ProductService'
 import "./ItemDetail.css"
@@ -7,11 +8,13 @@ import "./ItemDetail.css"
 function ItemDetail() {
     const {products} = React.useContext(ItemContext)
 
+    const {customer} = React.useContext(CustomerContext)
+
     const params = useParams()
     let itemID = params.itemId
 
     let item =  products.find(item => item.id == itemID)
-     item = {"name":"Tea","price":5,"score":4}
+    
     const [counter, setCounter] = useState(0);
  
   const increase = () => {
@@ -26,9 +29,9 @@ function ItemDetail() {
 
   const makeOrder = () =>{
       let service = new ProductService();
-      service.makeOrder(1,"Hookah",counter)
+      service.makeOrder(item.businessId,customer.tableId,item.id,counter)
   }
-    
+    console.log(item)
 
   return (
     <div id='item_detail'>

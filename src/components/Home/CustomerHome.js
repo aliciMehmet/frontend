@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom';
+import { CustomerContext } from '../../context/CustomerContext';
 import { ItemContext } from '../../context/ItemContext';
 import ProductService from '../../services/ProductService';
 import Category from '../Category';
@@ -28,10 +29,17 @@ function CustomerHome() {
 
 
     const {addProducts} = React.useContext(ItemContext) 
+    const {loginCustomer} = React.useContext(CustomerContext) 
 
     useEffect(() => {
         setBusinessId(getQueryVariable("businessId")); 
-        setTableId(getQueryVariable("tableId")); 
+        setTableId(getQueryVariable("tableId"));
+
+        let customer = {
+            "tableId":tableId
+        }
+
+        loginCustomer(customer)
 
        !socket && setSocket( new WebSocket('ws://localhost:8080/websocket'))
 
