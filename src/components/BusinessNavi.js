@@ -20,12 +20,11 @@ export class BusinessNavi extends Component
 					to="/sdfsdf">Manage Items</NavLink>
 					<NavLink className="d-inline p-2 bg-dark text-white"
 					to="onlineWaiters">Online Waiters</NavLink>
-					<NavLink className="d-inline p-2 bg-dark text-white"
-					to="/allWaiters">All Waiters</NavLink>
+					
 					<NavLink className="d-inline p-2 bg-dark text-white"
 					to="/allWaiters">Tables Status</NavLink>
 					<NavLink className="d-inline p-2 bg-dark text-white"
-					to="/allWaiters">Orders Status</NavLink>
+					to="/manageEmployees">Manage Employees</NavLink>
 					<NavLink className="d-inline p-2 bg-dark text-white"
 					to="/allOrders">All Orders</NavLink>
 				</Nav>
