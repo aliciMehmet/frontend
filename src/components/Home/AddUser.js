@@ -1,87 +1,80 @@
-import React, { useEffect, useState } from 'react'
-import { Navigate, Link, useLocation, useNavigate } from 'react-router-dom';
+import React from 'react'
 import { AuthContext } from '../../context/AuthContext';
 import BusinessService from '../../services/BusinessService';
-import ProductService from '../../services/ProductService';
 import { Modal, Button, Row, Col, Form, Card } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-function AddItem(props) {
-    const location = useLocation()
-    const { category } = location.state;
-    const { businessId } = location.state
+import { Navigate, Link, useLocation, useNavigate } from 'react-router-dom';
 
-    const navigate = useNavigate();
 
-    useEffect(() => {
-        console.log(category)
-        console.log(businessId)
+export default function AddUser() {
 
-    })
+    const { user } = React.useContext(AuthContext)
 
-    const handleAddItem = (e) => {
+
+    const handleAddUser = (e) => {
         e.preventDefault();
-        console.log(props.category)
+        
 
 
-        let item = {
-            businessId: businessId,
-            name: e.target.ItemName.value,
-            category: category,
-            price: e.target.ItemPrice.value,
-            stock: e.target.ItemStock.value
+        let newuser = {
+            
+            username: e.target.UserName.value,
+            password: e.target.UserPassword,
+            businessId: user.businessId,
+            role: e.target.UserRole.value,
         };
         
-        console.log(item);
+        console.log(newuser);
         let businessService = new BusinessService();
-        businessService.addItem(item).then(result => {
-            toast.success("Item added successfully");
-            navigate("/sdfsdf");
+        businessService.addUser(newuser).then(result => {
+            toast.success("User added successfully");
+            Navigate("/manageEmployees");
 
         })
 
     }
 
 
-    return (
-        <div className='container d-flex justify-content-center '>
+  return (
+    <div className='container d-flex justify-content-center '>
             <div className='row '>
                
             </div>
             <Card>
             <Card.Title className='text-center'>Add Item</Card.Title>  
             <Card.Body>
-            <Form onSubmit={(e) => handleAddItem(e)}>
-                <Form.Group controlId="ItemName">
+            <Form onSubmit={(e) => handleAddUser(e)}>
+                <Form.Group controlId="UserName">
                     <Form.Label>
-                        Item Name
+                        User Name
                     </Form.Label>
                     <Form.Control
                         type="text"
-                        name="ItemName"
+                        name="UserName"
                         required
                     />
 
 
                 </Form.Group>
-                <Form.Group controlId="ItemPrice">
+                <Form.Group controlId="UserPassword">
                     <Form.Label>
-                        Item Price
+                        User Password
                     </Form.Label>
                     <Form.Control
                         type="text"
-                        name="ItemPrice"
+                        name="UserPassword"
                         required
                     />
 
                 </Form.Group>
 
-                <Form.Group controlId="ItemStock">
+                <Form.Group controlId="UserRole">
                     <Form.Label>
-                        Item Stock
+                        User Role
                     </Form.Label>
                     <Form.Control
                         type="text"
-                        name="ItemStock"
+                        name="UserRole"
                         required
                     />
 
@@ -104,6 +97,5 @@ function AddItem(props) {
 
         </div>
 
-    )
+  )
 }
-export default AddItem

@@ -67,5 +67,27 @@ export default class BusinessService{
             }
         })
     }
+    deleteUser(user){
+        return axios.post("http://localhost:8080/admin/deleteUser",
+        user
+         
+     )
+    }
+    addUser(user){
+        return axios.post("http://localhost:8080/admin/addUser",
+        user
+         
+     )
+    }
+    getUserById(id){
+        return axios.get("http://localhost:8080/admin/getUserById",{
+            params:{
+                id:id
+            }
+        }
+       
+         
+     )
+    }
     
 }

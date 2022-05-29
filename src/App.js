@@ -26,6 +26,8 @@ import OnlineWaiters from "./components/Home/OnlineWaiters";
 import AllWaiters from "./components/Home/AllWaiters";
 import AllOrders from "./components/Home/AllOrders";
 import CustomerContextProvider from "./context/CustomerContext";
+import ManageEmployees from "./components/Home/ManageEmployees";
+import AddUser from "./components/Home/AddUser";
 
 function App() {
 
@@ -47,8 +49,10 @@ function App() {
           <Route path="/sdfsdf" element={<Denem/>} />
           <Route path="/addItem" element={<AddItem/>} />
           <Route path="/onlineWaiters" element={<OnlineWaiters/>} />
-          <Route path="/allWaiters" element={<AllWaiters/>} />
           <Route path="/allOrders" element={<AllOrders/>} />
+          <Route path="/manageEmployees" element={<ManageEmployees/>} />
+          <Route path="/addUser" element={<AddUser/>} />
+
 
 
 

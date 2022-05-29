@@ -69,7 +69,7 @@ function Denem() {
               <button style={{  marginBottom: "50px" }} className='btn btn-primary align-center'>Add item for this category</button>
               </Link></div> 
               
-
+              
               {products[a] && products[a].map(item =>
                 <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "5%" }}>
 

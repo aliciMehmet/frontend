@@ -72,7 +72,7 @@ function KitchenHome({user}) {
     <div id='kitchen_home'>
     
     KITCHEN
-    <button onClick={()=> openSession()}>START TO WORK</button>
+    <button className='btn btn-primary' onClick={()=> openSession()}>START TO WORK</button>
     
 
     <div id='waiting_orders'>
