@@ -12,8 +12,6 @@ export default function AllWaiters() {
     businessService.getEmployee(user.token,"WAITER").then(result => {
       if (result.data != null) {
         
-        console.log(result.data)
-
 
       }})}
       useEffect(() => {
