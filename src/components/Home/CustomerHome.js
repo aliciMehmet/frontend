@@ -37,6 +37,7 @@ function CustomerHome() {
     setTableId(getQueryVariable("tableId"));
 
     let customer = {
+      "businessId":businessId,
       "tableId": tableId
     }
 
