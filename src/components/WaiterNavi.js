@@ -1,27 +1,20 @@
-import React,{Component, useContext} from 'react';
+import React,{Component} from 'react';
 import {NavLink} from 'react-router-dom';
 import {Navbar,Nav} from 'react-bootstrap';
-import { CustomerContext } from '../context/CustomerContext';
 
-export class CustomerNavi extends Component
-
+export class WaiterNavi extends Component
 {
-    
 	render()
-    
 	{
-        // const {customer} = useContext(CustomerContext)
 		return(
-			<Navbar style={{backgroundColor:'#4a8dd1'}} expand="lg">
+			<Navbar bg="dark" expand="lg">
                 <div className='container'>
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
 				<Navbar.Collapse id="basic-navbar-nav">
 				<Nav className='d-flex justify-content-center'>
-                {/* <NavLink className="d-inline p-2 bg-dark text-white"
-					to={`/customer?businessId=${customer.businessId}tableId=${customer.tableId}`}>Home</NavLink> */}
 					<NavLink className="d-inline p-2 bg-dark text-white"
-					to="/customerReceipt">Get Receipt</NavLink>
+					to="/">Ready Orders</NavLink>
 					<NavLink className="d-inline p-2 bg-dark text-white"
 					to="/callWaiter">Call A Waiter</NavLink>
 					

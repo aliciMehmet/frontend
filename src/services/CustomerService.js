@@ -10,4 +10,14 @@ export default class CustomerService {
             }
         })
     }
+
+    
+    callWaiter(businessId,tableId){
+        return axios.post("http://localhost:8080/customer/callWaiter",{
+            params:{
+                businessId:businessId,
+                tableId:tableId
+            }
+        })
+    }
 }

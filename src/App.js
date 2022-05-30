@@ -30,6 +30,7 @@ import ManageEmployees from "./components/Home/ManageEmployees";
 import AddUser from "./components/Home/AddUser";
 import TablesStatus from "./components/Home/TablesStatus";
 import CustomerReceipt from "./components/Home/CustomerReceipt";
+import CallWaiter from "./components/Home/CallWaiter";
 
 function App() {
 
@@ -56,6 +57,8 @@ function App() {
           <Route path="/manageEmployees" element={<ManageEmployees/>} />
           <Route path="/addUser" element={<AddUser/>} />
           <Route path="/customerReceipt" element={<CustomerReceipt/>} />
+          <Route path="/callWaiter" element={<CallWaiter/>} />
+
 
 
 
