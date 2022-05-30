@@ -6,6 +6,9 @@ import { ItemContext } from '../../context/ItemContext';
 import ProductService from '../../services/ProductService';
 import Category from '../Category';
 import { CustomerNavi } from '../CustomerNavi';
+import useWebSocket from 'react-use-websocket';
+
+
 
 function CustomerHome() {
 
@@ -31,6 +34,27 @@ function CustomerHome() {
 
   const { addProducts } = React.useContext(ItemContext)
   const { loginCustomer } = React.useContext(CustomerContext)
+  const socketUrl = 'ws://localhost:8080/websocket';
+
+    const {
+        sendMessage,
+        sendJsonMessage,
+        lastMessage,
+        lastJsonMessage,
+        readyState,
+        getWebSocket,
+      } = useWebSocket(socketUrl, {
+        onOpen: () => {
+            let obj = {
+                "command":"SEATTABLE",
+                "tableId":getQueryVariable("tableId"),
+                "cafeId":getQueryVariable("businessId")
+            }
+            sendMessage(JSON.stringify(obj))
+        },
+        //Will attempt to reconnect on all close events, such as server shutting down
+        shouldReconnect: (closeEvent) => true,
+      });
 
   useEffect(() => {
     setBusinessId(getQueryVariable("businessId"));
