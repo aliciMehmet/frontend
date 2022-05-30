@@ -6,11 +6,7 @@ import useWebSocket from 'react-use-websocket';
 
 function KitchenHome({user}) {
 
-    const options = {
-        autoClose: false,
-        hideProgressBar: false,
-        pauseOnHover: true,
-    };
+    const [orders,setOrders] = useState([])
 
     const socketUrl = 'ws://localhost:8080/websocket';
 
@@ -31,8 +27,9 @@ function KitchenHome({user}) {
 
         sendMessage(JSON.stringify(obj))
       },
-      onmessage:(event)=>{
-      let obj =  JSON.parse(event.data)
+      onMessage:(message)=>{
+        console.log(message.data)
+      let obj =  JSON.parse(message.data)
 
       let notification = obj.count + " X " + obj.itemName
        toast.success(notification,{
@@ -45,8 +42,6 @@ function KitchenHome({user}) {
       shouldReconnect: (closeEvent) => true,
     });
 
-    const [orders,setOrders] = useState([])
-    
     useEffect(() => { 
       let businessService = new BusinessService();
       businessService.getWaitingOrders(user.token).then(result => setOrders(result.data.data))
