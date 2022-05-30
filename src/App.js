@@ -18,7 +18,6 @@ import Home from "./components/Home";
 import React, { useEffect } from "react";
 import Dashboard from "./components/Dashboard";
 import CustomerHome from "./components/Home/CustomerHome";
-import TablesStatus from "./components/Home/TablesStatus";
 import ItemDetail from "./components/ItemDetail";
 import ItemContextProvider from "./context/ItemContext";
 import Denem from "./components/Home/ManageItems";
@@ -48,7 +47,6 @@ function App() {
           <Route path="/customer/detail/:itemId" element={<ItemDetail/>} />
           <Route path="/topics" element={<Topics/>} />
           <Route path="/sdfsdf" element={<Denem/>} />
-          <Route path="/tablesStatus" element={<TablesStatus/>} />
           <Route path="/addItem" element={<AddItem/>} />
           <Route path="/onlineWaiters" element={<OnlineWaiters/>} />
           <Route path="/allOrders" element={<AllOrders/>} />

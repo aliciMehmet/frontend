@@ -5,11 +5,9 @@ import { CustomerContext } from '../../context/CustomerContext';
 import { ItemContext } from '../../context/ItemContext';
 import ProductService from '../../services/ProductService';
 import Category from '../Category';
-import useWebSocket from 'react-use-websocket';
 
 function CustomerHome() {
 
-<<<<<<< HEAD
   function getQueryVariable(variable) {
     var query = window.location.search.substring(1);
     console.log(query)
@@ -20,48 +18,6 @@ function CustomerHome() {
     }
     return (false);
   }
-=======
-    function getQueryVariable(variable)
-    {
-            var query = window.location.search.substring(1);
-            console.log(query)
-            var vars = query.split("&");
-            for (var i=0;i<vars.length;i++) {
-                        var pair = vars[i].split("=");
-            if(pair[0] == variable){return pair[1];}
-             }
-             return(false);
-    }
-
-    const socketUrl = 'ws://localhost:8080/websocket';
-
-    const {
-        sendMessage,
-        sendJsonMessage,
-        lastMessage,
-        lastJsonMessage,
-        readyState,
-        getWebSocket,
-      } = useWebSocket(socketUrl, {
-        onOpen: () => {
-            let obj = {
-                "command":"SEATTABLE",
-                "tableId":getQueryVariable("tableId"),
-                "cafeId":getQueryVariable("businessId")
-            }
-            sendMessage(JSON.stringify(obj))
-        },
-        //Will attempt to reconnect on all close events, such as server shutting down
-        shouldReconnect: (closeEvent) => true,
-      });
-
-
-    const [products,setProducts] = useState([])
-    const [businessId,setBusinessId] = useState(0)
-    const [tableId,setTableId] = useState(0)
-    const [categories,setCategories] = useState([])
-    const [socket, setSocket] = useState(null);
->>>>>>> a2cc73499884656b9531548cd2425fe4f0d7dbfd
 
 
 
@@ -75,7 +31,6 @@ function CustomerHome() {
   const { addProducts } = React.useContext(ItemContext)
   const { loginCustomer } = React.useContext(CustomerContext)
 
-<<<<<<< HEAD
   useEffect(() => {
     setBusinessId(getQueryVariable("businessId"));
     setTableId(getQueryVariable("tableId"));
@@ -111,23 +66,6 @@ function CustomerHome() {
             addProducts(result.data.data[key][i])
           }
 
-=======
-        let productService = new ProductService();
-        productService.getAllProducts(businessId).then(result => {
-            if(result.data != null){
-               // setProducts(result.data.data) 
-               
-             categories.length == 0 && setCategories(Object.keys(result.data.data))
-              setProducts(result.data.data)
-              console.log(result.data.data)
-              Object.keys(result.data.data).forEach(key =>{
-                  for(var i = 0; i < result.data.data[key].length; i++){
-                    addProducts(result.data.data[key][i])
-                  }
-                
-              })
-            }
->>>>>>> a2cc73499884656b9531548cd2425fe4f0d7dbfd
         })
       }
     })
@@ -145,7 +83,6 @@ function CustomerHome() {
         categories.map(a => {
           return (
             
-<<<<<<< HEAD
             <div>
             <h1 className='text-center' style={{marginTop:'1em'}}>{a}'s</h1>  
               {products[a].map(product => {
@@ -174,9 +111,6 @@ function CustomerHome() {
 
 
                 )
-=======
-    }, [categories]);
->>>>>>> a2cc73499884656b9531548cd2425fe4f0d7dbfd
 
               })}
 
