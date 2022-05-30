@@ -7,7 +7,7 @@ export class CustomerNavi extends Component
 	render()
 	{
 		return(
-			<Navbar bg="dark" expand="lg">
+			<Navbar style={{backgroundColor:'#4a8dd1'}} expand="lg">
                 <div className='container'>
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>

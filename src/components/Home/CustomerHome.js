@@ -36,32 +36,32 @@ function CustomerHome() {
   const { loginCustomer } = React.useContext(CustomerContext)
   const socketUrl = 'ws://localhost:8080/websocket';
 
-    const {
-        sendMessage,
-        sendJsonMessage,
-        lastMessage,
-        lastJsonMessage,
-        readyState,
-        getWebSocket,
-      } = useWebSocket(socketUrl, {
-        onOpen: () => {
-            let obj = {
-                "command":"SEATTABLE",
-                "tableId":getQueryVariable("tableId"),
-                "cafeId":getQueryVariable("businessId")
-            }
-            sendMessage(JSON.stringify(obj))
-        },
-        //Will attempt to reconnect on all close events, such as server shutting down
-        shouldReconnect: (closeEvent) => true,
-      });
+  const {
+    sendMessage,
+    sendJsonMessage,
+    lastMessage,
+    lastJsonMessage,
+    readyState,
+    getWebSocket,
+  } = useWebSocket(socketUrl, {
+    onOpen: () => {
+      let obj = {
+        "command": "SEATTABLE",
+        "tableId": getQueryVariable("tableId"),
+        "cafeId": getQueryVariable("businessId")
+      }
+      sendMessage(JSON.stringify(obj))
+    },
+    //Will attempt to reconnect on all close events, such as server shutting down
+    shouldReconnect: (closeEvent) => true,
+  });
 
   useEffect(() => {
     setBusinessId(getQueryVariable("businessId"));
     setTableId(getQueryVariable("tableId"));
 
     let customer = {
-      "businessId":businessId,
+      "businessId": businessId,
       "tableId": tableId
     }
 
@@ -104,23 +104,14 @@ function CustomerHome() {
 
   return (
     <div >
-
-      
-      <div className='container d-flex justify-content-center'>
-      <Link to="/customerReceipt" state={{ businessId:businessId, tableId: tableId }}>
-              <button style={{  marginBottom: "50px" }} className='btn btn-primary align-center'>Get Receipt</button>
-              </Link>
-      </div>
-
-
-      <CustomerNavi/>
+      <CustomerNavi />
       {
 
         categories.map(a => {
           return (
-            
+
             <div>
-            <h1 className='text-center' style={{marginTop:'1em'}}>{a}'s</h1>  
+              <h1 className='text-center' style={{ marginTop: '1em' }}>{a}'s</h1>
               {products[a].map(product => {
                 return (
 
@@ -130,16 +121,16 @@ function CustomerHome() {
                       <Card.Body>
                         <Card.Title className='text-center'>{product.name}</Card.Title>
                         <Card.Text>
-                          
-                        </Card.Text>
-                        <div className='d-flex justify-content-center' style={{marginTop:'2em'}}>
 
-                        <Link to={"detail/"+product.id} key={product.id}>
-                        <Button variant="primary" className>Order</Button>
-                        </Link>
-                        
+                        </Card.Text>
+                        <div className='d-flex justify-content-center' style={{ marginTop: '2em' }}>
+
+                          <Link to={"detail/" + product.id} key={product.id}>
+                            <Button variant="primary" className>Order</Button>
+                          </Link>
+
                         </div>
-                        
+
                       </Card.Body>
                     </Card>
 
