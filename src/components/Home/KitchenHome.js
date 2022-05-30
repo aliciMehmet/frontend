@@ -58,8 +58,9 @@ function KitchenHome({user}) {
 
   }
 
-
-    const sendReadyMessage = () => {
+    //TODO
+    const sendReadyMessage = (tableId) => {
+      console.log("tableId: ",tableId)
         var obj = {
           "command":"ORDERREADY",
           "cafeId":1,
@@ -82,7 +83,7 @@ function KitchenHome({user}) {
             <div>Item Name: {order.itemName}</div>
             <div>Count: {order.count}</div>
             <div>Table Number: {order.tableId}</div>
-            <button onClick={()=> sendReadyMessage()}>ready</button>
+            <button onClick={()=> sendReadyMessage(order.tableId)}>ready</button>
             </div> 
         )
       })}

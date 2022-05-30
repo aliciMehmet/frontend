@@ -28,6 +28,7 @@ import AllOrders from "./components/Home/AllOrders";
 import CustomerContextProvider from "./context/CustomerContext";
 import ManageEmployees from "./components/Home/ManageEmployees";
 import AddUser from "./components/Home/AddUser";
+import TablesStatus from "./components/Home/TablesStatus";
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
           <Route path="/customer/detail/:itemId" element={<ItemDetail/>} />
           <Route path="/topics" element={<Topics/>} />
           <Route path="/sdfsdf" element={<Denem/>} />
+          <Route path="/tablesStatus" element={<TablesStatus/>} />
           <Route path="/addItem" element={<AddItem/>} />
           <Route path="/onlineWaiters" element={<OnlineWaiters/>} />
           <Route path="/allOrders" element={<AllOrders/>} />
