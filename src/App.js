@@ -29,6 +29,7 @@ import CustomerContextProvider from "./context/CustomerContext";
 import ManageEmployees from "./components/Home/ManageEmployees";
 import AddUser from "./components/Home/AddUser";
 import TablesStatus from "./components/Home/TablesStatus";
+import CustomerReceipt from "./components/Home/CustomerReceipt";
 
 function App() {
 
@@ -54,6 +55,8 @@ function App() {
           <Route path="/allOrders" element={<AllOrders/>} />
           <Route path="/manageEmployees" element={<ManageEmployees/>} />
           <Route path="/addUser" element={<AddUser/>} />
+          <Route path="/customerReceipt" element={<CustomerReceipt/>} />
+
 
 
 
