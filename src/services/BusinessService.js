@@ -89,5 +89,13 @@ export default class BusinessService{
          
      )
     }
+    getReceipt(businessId,tableId){
+        return axios.get("http://localhost:8080/admin/getReceipt",{
+            params:{
+                businessId:businessId,
+                tableId:tableId
+            }
+        })
+    }
     
 }

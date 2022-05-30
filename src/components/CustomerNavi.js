@@ -14,7 +14,7 @@ export class CustomerNavi extends Component
 				<Navbar.Collapse id="basic-navbar-nav">
 				<Nav className='d-flex justify-content-center'>
 					<NavLink className="d-inline p-2 bg-dark text-white"
-					to="/">Get Receipt</NavLink>
+					to="/customerReceipt">Get Receipt</NavLink>
 					<NavLink className="d-inline p-2 bg-dark text-white"
 					to="/">Call A Waiter</NavLink>
 					

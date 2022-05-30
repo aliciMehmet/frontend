@@ -79,6 +79,15 @@ function CustomerHome() {
 
   return (
     <div >
+
+      
+      <div className='container d-flex justify-content-center'>
+      <Link to="/customerReceipt" state={{ businessId:businessId, tableId: tableId }}>
+              <button style={{  marginBottom: "50px" }} className='btn btn-primary align-center'>Get Receipt</button>
+              </Link>
+      </div>
+
+
       <CustomerNavi/>
       {
 
