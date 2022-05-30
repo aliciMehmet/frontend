@@ -19,7 +19,6 @@ function KitchenHome({user}) {
 
       let businessService = new BusinessService();
       businessService.getWaitingOrders(user.token).then(result => setOrders(result.data.data))
-      console.log("first effect")
 
     }, []);
 
