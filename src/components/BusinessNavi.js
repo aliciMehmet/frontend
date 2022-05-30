@@ -21,9 +21,15 @@ export class BusinessNavi extends Component
 					<NavLink className="d-inline p-2 bg-dark text-white"
 					to="onlineWaiters">Online Waiters</NavLink>
 					
+<<<<<<< HEAD
 					<NavLink className="d-inline p-2 bg-dark text-white"
 					to="/allWaiters">Tables Status</NavLink>
 					<NavLink className="d-inline p-2 bg-dark text-white"
+=======
+					<NavLink className="d-inline p-2 bg-dark text-white"
+					to="/tablesStatus">Tables Status</NavLink>
+					<NavLink className="d-inline p-2 bg-dark text-white"
+>>>>>>> a2cc73499884656b9531548cd2425fe4f0d7dbfd
 					to="/manageEmployees">Manage Employees</NavLink>
 					<NavLink className="d-inline p-2 bg-dark text-white"
 					to="/allOrders">All Orders</NavLink>
