@@ -9,7 +9,6 @@ import { CustomerNavi } from '../CustomerNavi';
 import useWebSocket from 'react-use-websocket';
 
 
-
 function CustomerHome() {
 
   function getQueryVariable(variable) {
@@ -23,14 +22,8 @@ function CustomerHome() {
     return (false);
   }
 
-
-
   const [products, setProducts] = useState([])
-  const [businessId, setBusinessId] = useState(0)
-  const [tableId, setTableId] = useState(0)
   const [categories, setCategories] = useState([])
-  const [socket, setSocket] = useState(null);
-
 
   const { addProducts } = React.useContext(ItemContext)
   const { loginCustomer } = React.useContext(CustomerContext)
@@ -57,30 +50,17 @@ function CustomerHome() {
   });
 
   useEffect(() => {
-    setBusinessId(getQueryVariable("businessId"));
-    setTableId(getQueryVariable("tableId"));
 
     let customer = {
-      "businessId": businessId,
-      "tableId": tableId
+      "businessId": getQueryVariable("businessId"),
+      "tableId": getQueryVariable("tableId")
     }
 
     loginCustomer(customer)
 
-    !socket && setSocket(new WebSocket('ws://localhost:8080/websocket'))
-
-    var obj = {
-      "command": "SEATTABLE",
-      "cafeId": businessId,
-      "tableId": tableId
-    }
-
-    socket && socket.readyState == 1 && socket.send(JSON.stringify(obj));
-
-    console.log(socket)
-
     let productService = new ProductService();
-    productService.getAllProducts(businessId).then(result => {
+    productService.getAllProducts(getQueryVariable("businessId")).then(result => {
+      console.log(result.data)
       if (result.data != null) {
         // setProducts(result.data.data)
 
@@ -96,10 +76,7 @@ function CustomerHome() {
       }
     })
 
-
-
-
-  }, [socket]);
+  }, []);
 
 
   return (
@@ -143,20 +120,11 @@ function CustomerHome() {
 
             </div>
 
-
-
-
           )
         })}
 
-
-
     </div>
-
-
   )
-
-
 }
 
 export default CustomerHome
