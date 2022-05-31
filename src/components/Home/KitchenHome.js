@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import BusinessService from '../../services/BusinessService';
-import "./KitchenHome.css"
 import useWebSocket from 'react-use-websocket';
+import { Button, Card, ListGroup } from 'react-bootstrap';
+import { KitchenNavi } from '../KitchenNavi';
 
 function KitchenHome({user}) {
 
@@ -62,17 +63,30 @@ function KitchenHome({user}) {
   return (
     <div id='kitchen_home'>
     
-    KITCHEN
-
+    <KitchenNavi/>
+    <br></br>
+    <h2 className='text-center'>Waiting Orders</h2>
     <div id='waiting_orders'>
       {orders.map(order => {
         return(
-          <div id='order_container'>
-            <div>Item Name: {order.itemName}</div>
-            <div>Count: {order.count}</div>
-            <div>Table Number: {order.tableId}</div>
-            <button onClick={()=> sendReadyMessage(order.tableId)}>ready</button>
-            </div> 
+          <Card style={{ width: '23rem', marginTop: '2em' }} className="mx-auto">
+                <Card.Header></Card.Header>
+                <Card.Body>
+                  <Card.Title className='text-center'>{order.itemName}</Card.Title>
+                  <ListGroup variant="flush">
+                    <ListGroup.Item>Count: {order.count}</ListGroup.Item>
+                    <ListGroup.Item>Table Number: {order.tableId}</ListGroup.Item>
+                  </ListGroup>
+                  <div className='d-flex justify-content-center' style={{ marginTop: '2em' }}>
+
+                   
+                      <Button onClick={() => sendReadyMessage(order.tableId)} variant="primary" className>Ready</Button>
+                    
+
+                  </div>
+
+                </Card.Body>
+              </Card>
         )
       })}
     </div>

@@ -1,62 +1,146 @@
 import React, { useEffect, useState } from 'react'
 import useWebSocket from 'react-use-websocket';
 import { ToastContainer, toast } from 'react-toastify';
+import { Button, Card, ListGroup, Row } from 'react-bootstrap';
+import { WaiterNavi } from '../WaiterNavi';
 
-function WaiterHome({user}) {
+function WaiterHome({ user }) {
 
   const socketUrl = 'ws://localhost:8080/websocket';
+  const [tables, setTables] = useState([])
+  const [calls, setCalls] = useState([])
 
-    const {
-        sendMessage,
-        sendJsonMessage,
-        lastMessage,
-        lastJsonMessage,
-        readyState,
-        getWebSocket,
-      } = useWebSocket(socketUrl, {
-        onOpen: () => {
-          let obj = {
-            "command":"OPEN"+user.role,
-            "token":user.token
-          }
-            sendMessage(JSON.stringify(obj))
-        },
-        onMessage:(message)=>{
-         let obj = JSON.parse(message.data)
 
-         if(obj.command == "ORDERREADY"){
-          let str = "Table "+obj.tableId+"'s order is ready!"
-          toast.success(str,{
-            autoClose:false,
-            closeButton:true
+
+  const {
+    sendMessage,
+    sendJsonMessage,
+    lastMessage,
+    lastJsonMessage,
+    readyState,
+    getWebSocket,
+  } = useWebSocket(socketUrl, {
+    onOpen: () => {
+      let obj = {
+        "command": "OPEN" + user.role,
+        "token": user.token
+      }
+      sendMessage(JSON.stringify(obj))
+    },
+    onMessage: (message) => {
+      console.log(message.data)
+
+      let obj = JSON.parse(message.data)
+
+      if (obj.command == "ORDERREADY") {
+        let str = "Table " + obj.tableId + "'s order is ready!"
+        toast.success(str, {
+          autoClose: false,
+          closeButton: true
+
         });
-         }else if(obj.command == "CALL"){
-          let str = "Table "+obj.tableId+" is calling you"
+        setTables(prevState => [...prevState, obj])
 
-          toast.success(str,{
-            autoClose:false,
-            closeButton:true
+      } else if (obj.command == "CALL") {
+        let str = "Table " + obj.tableId + " is calling you"
+
+        toast.success(str, {
+          autoClose: false,
+          closeButton: true
         });
-         }
-         
-        },
-      
-        //Will attempt to reconnect on all close events, such as server shutting down
-        shouldReconnect: (closeEvent) => true,
-      });
+        setCalls(prevState => [...prevState, obj])
+      }
 
-    const [socket, setSocket] = useState(null);
+    },
 
-  
-    socket && socket.addEventListener('message',function(event){
-      console.log("event : ",event.data)
-    })
+    //Will attempt to reconnect on all close events, such as server shutting down
+    shouldReconnect: (closeEvent) => true,
+  });
+
+  const [socket, setSocket] = useState(null);
+
+
+  socket && socket.addEventListener('message', function (event) {
+    console.log("event : ", event.data)
+  })
 
   return (
+
     <div>
-    
-    WAITER
-    
+      <WaiterNavi />
+      <br></br>
+      <h2 className='text-center'>Waiting Orders</h2>
+
+      <div className='container' style={{ marginTop: "1em" }}>
+        {tables.map(table => {
+
+          return (
+            <Row>
+
+              <Card style={{ width: '23rem', marginTop: '2em' }} className="mx-auto">
+                <Card.Header></Card.Header>
+                <Card.Body>
+                  <Card.Title className='text-center'>Table {table.tableId}</Card.Title>
+                  <ListGroup variant="flush">
+
+                  </ListGroup>
+                  <div className='d-flex justify-content-center' style={{ marginTop: '2em' }}>
+
+                    {/* <Link to={"detail/" + product.id} key={product.id}> */}
+                    <Button variant="primary" className>Complete Order</Button>
+                    {/* </Link> */}
+
+                  </div>
+
+
+                </Card.Body>
+              </Card>
+            </Row>
+
+
+
+          )
+        })}
+      </div>
+
+      <br></br>
+      <hr></hr>
+      <br></br>
+
+      <h2 className='text-center'>Waiting Calls</h2>
+
+      <div className='container' style={{ marginTop: "1em" }}>
+        {calls.map(call => {
+
+          return (
+            <Row>
+
+              <Card style={{ width: '23rem', marginTop: '2em' }} className="mx-auto">
+                <Card.Header></Card.Header>
+                <Card.Body>
+                  <Card.Title className='text-center'>Table {call.tableId}</Card.Title>
+                  <ListGroup variant="flush">
+
+                  </ListGroup>
+                  <div className='d-flex justify-content-center' style={{ marginTop: '2em' }}>
+
+                    {/* <Link to={"detail/" + product.id} key={product.id}> */}
+                    <Button variant="primary" className>Complete Call</Button>
+                    {/* </Link> */}
+
+                  </div>
+
+
+                </Card.Body>
+              </Card>
+            </Row>
+
+
+
+          )
+        })}
+      </div>
+
     </div>
   )
 }

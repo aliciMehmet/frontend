@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import {NavLink} from 'react-router-dom';
 import {Navbar,Nav} from 'react-bootstrap';
 
-export class WaiterNavi extends Component
+export class KitchenNavi extends Component
 {
 	render()
 	{

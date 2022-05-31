@@ -10,11 +10,11 @@ export default function CallWaiter() {
   
   
   
-    const callWaiter = () => {
+     function callWaiter(){
         
         let customerService = new CustomerService();
         customerService.callWaiter(customer.businessId,customer.tableId).then(result => {
-          if (result.data != null) {
+          if (result) {
     
             console.log("başarılı");
           
@@ -22,7 +22,7 @@ export default function CallWaiter() {
               
     
     
-          }})}
+          }}).catch(error=> console.log(error.message))}
     
 
 

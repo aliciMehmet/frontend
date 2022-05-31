@@ -18,7 +18,6 @@ function Home() {
   else if(user.role == "WAITER"){
      return ( 
      <div>
-        <BusinessNavi/> 
         <WaiterHome user={user} />
      </div> 
      )

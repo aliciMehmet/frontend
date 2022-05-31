@@ -64,6 +64,7 @@ export default function CustomerReceipt() {
                             }
                         </tbody>
                     </table>
+                    <hr></hr>
                     <h4 className='text-center'>Total Price Of All Orders: {total}</h4>
                     
                 </div>
