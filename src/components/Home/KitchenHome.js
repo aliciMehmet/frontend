@@ -2,78 +2,67 @@ import React, { useEffect, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import BusinessService from '../../services/BusinessService';
 import "./KitchenHome.css"
+import useWebSocket from 'react-use-websocket';
 
 function KitchenHome({user}) {
 
-    const options = {
-        autoClose: false,
-        hideProgressBar: false,
-        pauseOnHover: true,
-    };
-
-    const [socket, setSocket] = useState(null);
     const [orders,setOrders] = useState([])
-    
-    useEffect(() => { 
-       setSocket( new WebSocket('ws://localhost:8080/websocket')) 
 
+    const socketUrl = 'ws://localhost:8080/websocket';
+
+    const {
+      sendMessage,
+      sendJsonMessage,
+      lastMessage,
+      lastJsonMessage,
+      readyState,
+      getWebSocket,
+    } = useWebSocket(socketUrl, {
+      onOpen: () => {
+
+        let obj = {
+          "command": "OPENKITCHEN",
+          "token": user.token
+        }
+
+        sendMessage(JSON.stringify(obj))
+      },
+      onMessage:(message)=>{
+        console.log(message.data)
+      let obj =  JSON.parse(message.data)
+
+      let notification = obj.count + " X " + obj.itemName
+       toast.success(notification,{
+           autoClose:false
+       });
+
+       setOrders(prevState => [...prevState,obj])
+      },
+      //Will attempt to reconnect on all close events, such as server shutting down
+      shouldReconnect: (closeEvent) => true,
+    });
+
+    useEffect(() => { 
       let businessService = new BusinessService();
       businessService.getWaitingOrders(user.token).then(result => setOrders(result.data.data))
 
     }, []);
 
-    /*console.log("naber")
-    socket && socket.addEventListener('message',function(event){
-      let obj =  JSON.parse(event.data)
-       console.log(obj)
-      let notification = obj.count + " X " + obj.itemName
-       toast.success(notification,{
-           autoClose:false
-       });
-       setOrders(prevState => [...prevState,obj])
-       console.log(orders)
-     })*/
 
-      
-  
-  const openSession = () => {
-    var obj = {
-      "command":"OPEN"+user.role,
-      "token":user.token
-    }
-  
-    socket.send(JSON.stringify(obj));
-
-    socket.addEventListener('message',function(event){
-      let obj =  JSON.parse(event.data)
-       console.log(obj)
-      let notification = obj.count + " X " + obj.itemName
-       toast.success(notification,{
-           autoClose:false
-       });
-       setOrders(prevState => [...prevState,obj])
-       console.log(orders)
-     })
-
-  }
-
-    //TODO
     const sendReadyMessage = (tableId) => {
-      console.log("tableId: ",tableId)
         var obj = {
           "command":"ORDERREADY",
-          "cafeId":1,
-          "tableId":1
+          "token":user.token,
+          "tableId":tableId
         }
-        socket.send(JSON.stringify(obj));
+
+        sendMessage(JSON.stringify(obj));
       }
 
   return (
     <div id='kitchen_home'>
     
     KITCHEN
-    <button className='btn btn-primary' onClick={()=> openSession()}>START TO WORK</button>
-    
 
     <div id='waiting_orders'>
       {orders.map(order => {

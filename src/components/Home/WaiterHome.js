@@ -23,11 +23,22 @@ function WaiterHome({user}) {
         },
         onMessage:(message)=>{
          let obj = JSON.parse(message.data)
-         let str = "Table "+obj.tableId+"'s order is ready!"
+
+         if(obj.command == "ORDERREADY"){
+          let str = "Table "+obj.tableId+"'s order is ready!"
           toast.success(str,{
             autoClose:false,
             closeButton:true
         });
+         }else if(obj.command == "CALL"){
+          let str = "Table "+obj.tableId+" is calling you"
+
+          toast.success(str,{
+            autoClose:false,
+            closeButton:true
+        });
+         }
+         
         },
       
         //Will attempt to reconnect on all close events, such as server shutting down
