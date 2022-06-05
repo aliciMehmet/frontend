@@ -11,9 +11,10 @@ export default function CallWaiter() {
   
   
      function callWaiter(){
-        
+       console.log(parseInt(customer.businessId))
+       console.log(parseInt(customer.tableId))
         let customerService = new CustomerService();
-        customerService.callWaiter(customer.businessId,customer.tableId).then(result => {
+        customerService.callWaiter(parseInt(customer.businessId),parseInt(customer.tableId)).then(result => {
           if (result) {
     
             console.log("başarılı");
