@@ -50,14 +50,20 @@ function KitchenHome({user}) {
     }, []);
 
 
-    const sendReadyMessage = (tableId) => {
+    const sendReadyMessage = (order) => {
         var obj = {
           "command":"ORDERREADY",
           "token":user.token,
-          "tableId":tableId
+          "tableId":order.tableId
         }
 
         sendMessage(JSON.stringify(obj));
+
+        let remainingOrders = orders.filter((o) => {
+          return o.id != order.id
+        })
+
+        setOrders(remainingOrders)
       }
 
   return (
@@ -80,7 +86,7 @@ function KitchenHome({user}) {
                   <div className='d-flex justify-content-center' style={{ marginTop: '2em' }}>
 
                    
-                      <Button onClick={() => sendReadyMessage(order.tableId)} variant="primary" className>Ready</Button>
+                      <Button onClick={() => sendReadyMessage(order)} variant="primary" className>Ready</Button>
                     
 
                   </div>
