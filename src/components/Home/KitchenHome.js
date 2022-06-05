@@ -54,7 +54,8 @@ function KitchenHome({user}) {
         var obj = {
           "command":"ORDERREADY",
           "token":user.token,
-          "tableId":order.tableId
+          "tableId":order.tableId,
+          "orderId":order.id
         }
 
         sendMessage(JSON.stringify(obj));
