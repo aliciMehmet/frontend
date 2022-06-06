@@ -68,15 +68,19 @@ export default class BusinessService{
         })
     }
     deleteUser(user){
-        return axios.post("http://localhost:8080/admin/deleteUser",{
-            params:{
-                user:user
-            }
-        })
+        return axios.post("http://localhost:8080/admin/deleteUser",
+            
+                user
+            
+        )
     }
-    addUser(user){
-        return axios.post("http://localhost:8080/admin/addUser",
-        user
+    addUser(username,password,role,token){
+        return axios.post("http://localhost:8080/admin/addUser",{
+                token:token,
+                username:username,
+                password:password,
+                role:role
+        }
          
      )
     }
