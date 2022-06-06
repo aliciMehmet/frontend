@@ -67,10 +67,10 @@ export default class BusinessService{
             }
         })
     }
-    deleteUser(userId){
+    deleteUser(user){
         return axios.post("http://localhost:8080/admin/deleteUser",{
             params:{
-                userId:userId
+                user:user
             }
         })
     }

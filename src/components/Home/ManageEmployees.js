@@ -15,11 +15,11 @@ export default function ManageEmployees() {
     const [waiters, setWaiters] = useState([])
     const [kitchen, setKitchen] = useState([])
 
-    const deleteUser = (userId) => {
+    const deleteUser = (userr) => {
+
         if (window.confirm('Are you sure?')) {
-            console.log(user.id);
             let businessService = new BusinessService();
-            businessService.deleteUser(userId).then(result => toast.success("User deleted successfully"))
+            businessService.deleteUser(userr).then(result => toast.success("User deleted successfully"))
 
         }
     }
@@ -78,7 +78,7 @@ export default function ManageEmployees() {
                                             <td>{us.businessId}</td>
                                             <td>{us.role}</td>
 
-                                            <td><Button onClick={() => deleteUser(us.id)} variant="danger" className>Delete</Button></td>
+                                            <td><Button onClick={() => deleteUser(us)} variant="danger" className>Delete</Button></td>
                                             {/* <td><button className="btn btn-warning" onClick={() => this.deleteUser(us.id)}>Delete</button></td> */}
                                         </tr>
                                 )
