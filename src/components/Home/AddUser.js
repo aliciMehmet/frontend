@@ -4,6 +4,7 @@ import BusinessService from '../../services/BusinessService';
 import { Modal, Button, Row, Col, Form, Card } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { BusinessNavi } from '../BusinessNavi';
 
 
 export default function AddUser() {
@@ -29,10 +30,11 @@ export default function AddUser() {
 
 
   return (
-    <div className='container d-flex justify-content-center '>
-            <div className='row '>
-               
-            </div>
+    <div className=''>
+      <BusinessNavi></BusinessNavi>
+
+            <div className='container '>
+                <br></br> <br></br>
             <Card>
             <Card.Title className='text-center'>Add Item</Card.Title>  
             <Card.Body>
@@ -85,6 +87,9 @@ export default function AddUser() {
             
 
             </Card>
+               
+            </div>
+            
             
 
 
