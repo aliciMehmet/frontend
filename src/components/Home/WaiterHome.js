@@ -57,12 +57,14 @@ function WaiterHome({ user }) {
     shouldReconnect: (closeEvent) => true,
   });
 
-  const [socket, setSocket] = useState(null);
+  const handleCall = (tableId) => {
+    console.log(tableId)
+    let remainingCalls = calls.filter((call) => {
+      return call.tableId != tableId
+    })
 
-
-  socket && socket.addEventListener('message', function (event) {
-    console.log("event : ", event.data)
-  })
+    setCalls(remainingCalls)
+  }
 
   return (
 
@@ -87,7 +89,7 @@ function WaiterHome({ user }) {
                   <div className='d-flex justify-content-center' style={{ marginTop: '2em' }}>
 
                     {/* <Link to={"detail/" + product.id} key={product.id}> */}
-                    <Button variant="primary" className>Complete Order</Button>
+                    <Button variant="primary"  className>Complete Order</Button>
                     {/* </Link> */}
 
                   </div>
@@ -125,7 +127,7 @@ function WaiterHome({ user }) {
                   <div className='d-flex justify-content-center' style={{ marginTop: '2em' }}>
 
                     {/* <Link to={"detail/" + product.id} key={product.id}> */}
-                    <Button variant="primary" className>Complete Call</Button>
+                    <Button variant="primary" onClick={() => handleCall(call.tableId)} className>Complete Call</Button>
                     {/* </Link> */}
 
                   </div>

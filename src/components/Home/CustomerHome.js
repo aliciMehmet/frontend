@@ -24,6 +24,7 @@ function CustomerHome() {
 
   const [products, setProducts] = useState([])
   const [categories, setCategories] = useState([])
+  const [isLoading ,setLoading] = useState(true)
 
   const { addProducts } = React.useContext(ItemContext)
   const { loginCustomer } = React.useContext(CustomerContext)
@@ -57,13 +58,12 @@ function CustomerHome() {
     }
 
     loginCustomer(customer)
+    setLoading(false)
 
     let productService = new ProductService();
     productService.getAllProducts(getQueryVariable("businessId")).then(result => {
       console.log(result.data)
       if (result.data != null) {
-        // setProducts(result.data.data)
-
         setCategories(Object.keys(result.data.data))
         setProducts(result.data.data)
         console.log(categories)
@@ -81,7 +81,7 @@ function CustomerHome() {
 
   return (
     <div >
-      <CustomerNavi />
+     { !isLoading && <CustomerNavi />}
       {
 
         categories.map(a => {
