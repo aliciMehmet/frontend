@@ -8,20 +8,20 @@ export default function OnlineWaiters() {
   
   const [waiters, setWaiters] = useState([])
 
-  // function getUser(id){
+  function getUser(id){
 
-  //   let businessService = new BusinessService();
-  //   businessService.getUserById(id).then(result => {
-  //     if (result.data != null) {
+    let businessService = new BusinessService();
+    businessService.getUserById(id).then(result => {
+      if (result.data != null) {
 
-  //       console.log(result.data)
-  //       return result.data;
+        console.log(result.data.data.username)
+        return result.data.data.username;
          
 
 
-  //     }
-  //   })
-  // }
+      }
+    })
+  }
 
   
 
@@ -60,7 +60,9 @@ export default function OnlineWaiters() {
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Username</th>
+                                {/* <th>Username</th>
+                                <th>buton</th> */}
+
                                 
                             </tr>
                         </thead>
@@ -76,7 +78,7 @@ export default function OnlineWaiters() {
                                     
 
 
-                                    {/* <td><button className="btn btn-warning" onClick={() => this.deleteTodoClicked(todo.id)}>Delete</button></td> */}
+                                    {/* <td><button className="btn btn-warning" onClick={() => getUser(us)}>Delete</button></td> */}
                                 </tr>
                         )
                               
