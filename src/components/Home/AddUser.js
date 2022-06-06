@@ -3,13 +3,13 @@ import { AuthContext } from '../../context/AuthContext';
 import BusinessService from '../../services/BusinessService';
 import { Modal, Button, Row, Col, Form, Card } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import { Navigate, Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 
 export default function AddUser() {
 
     const { user } = React.useContext(AuthContext)
-
+    const navigate = useNavigate();
 
     const handleAddUser = (e) => {
         e.preventDefault();
@@ -21,7 +21,7 @@ export default function AddUser() {
         let businessService = new BusinessService();
         businessService.addUser(username,password,role,user.token).then(result => {
             toast.success("User added successfully");
-            Navigate("/manageEmployees");
+            navigate("/manageEmployees");
 
         })
 
