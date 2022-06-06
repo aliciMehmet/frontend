@@ -64,7 +64,7 @@ function KitchenHome({user}) {
           return o.id != order.id
         })
 
-        setOrders(remainingOrders)
+        setOrders(orders.filter(o => o.id != order.id))
       }
 
   return (
