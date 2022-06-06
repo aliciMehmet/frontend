@@ -36,7 +36,7 @@ export default function AddUser() {
             <div className='container '>
                 <br></br> <br></br>
             <Card>
-            <Card.Title className='text-center'>Add Item</Card.Title>  
+            <Card.Title className='text-center'>Add User</Card.Title>  
             <Card.Body>
             <Form onSubmit={(e) => handleAddUser(e)}>
                 <Form.Group controlId="UserName">
