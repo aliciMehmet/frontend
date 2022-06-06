@@ -39,7 +39,7 @@ export default function ManageEmployees() {
                 if (result.data != null) {
     
                     console.log(result.data)
-                    setWaiters(result.data.data)
+                    setKitchen(result.data.data)
                     
     
     
@@ -103,7 +103,7 @@ export default function ManageEmployees() {
                         </thead>
                         <tbody>
                             {
-                                waiters.map(
+                                kitchen.map(
                                     (us) =>
                                         <tr key={us.id}>
                                             <td>{us.id}</td>

@@ -17,7 +17,7 @@ export class BusinessNavi extends Component
 				<Navbar.Collapse id="basic-navbar-nav">
 				<Nav className='d-flex justify-content-center'>
 					<NavLink className="d-inline p-2 bg-dark text-white"
-					to="/sdfsdf">Manage Items</NavLink>
+					to="/manageItems">Manage Items</NavLink>
 					<NavLink className="d-inline p-2 bg-dark text-white"
 					to="/onlineWaiters">Online Waiters</NavLink>
 					

@@ -49,7 +49,7 @@ function App() {
           <Route path="/customer/"  element={<CustomerHome/>} />
           <Route path="/customer/detail/:itemId" element={<ItemDetail/>} />
           <Route path="/topics" element={<Topics/>} />
-          <Route path="/sdfsdf" element={<Denem/>} />
+          <Route path="/manageItems" element={<Denem/>} />
           <Route path="/tablesStatus" element={<TablesStatus/>} />
           <Route path="/addItem" element={<AddItem/>} />
           <Route path="/onlineWaiters" element={<OnlineWaiters/>} />
