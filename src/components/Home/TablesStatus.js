@@ -15,9 +15,12 @@ function TablesStatus() {
 
   const handleClose = () => setShow(false);
   const [orders,setOrders] = useState([])
+  let total=0;
+
 
 
   const getReceipt = (tableId) => {
+    total=0
 
     console.log(user.businessId)
     let businessService = new BusinessService();
@@ -92,7 +95,46 @@ function TablesStatus() {
                       <Modal.Header closeButton>
                         <Modal.Title>Receipt</Modal.Title>
                       </Modal.Header>
-                      <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                      <Modal.Body><div className="container" >
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th>Item Name</th>
+                                <th>Count</th>
+                                <th>Total Price</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                orders.map(
+                                    (order) =>
+                                    {
+                                      total = total+order.totalPrice/4;
+                                    return(
+                                        <tr >
+                                        <td>{order.itemName}</td>
+                                        <td>{order.count}</td>
+                                        
+
+                                        <td>{order.totalPrice}</td>
+
+
+                                        {/* <td><button className="btn btn-warning" onClick={() => this.deleteTodoClicked(todo.id)}>Delete</button></td> */}
+                                    </tr>
+
+                                    )
+
+                                    }
+                                       
+                                )
+                            }
+                        </tbody>
+                    </table>
+                    <hr></hr>
+                    <h4 className='text-center'>Total Price Of All Orders: {total}</h4>
+                    
+                </div></Modal.Body>
                       <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
                           Close

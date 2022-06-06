@@ -74,7 +74,7 @@ function Denem() {
                 <div style={{ display: "flex", justifyContent: "space-around", marginBottom: "5%" }}>
 
                   <Form onSubmit={(e) => updateItem(e, item)}>
-                    <Form.Group className='d-flex container' controlId="ItemName">
+                    <Form.Group style={{marginTop:"1em"}} className='d-flex container my-auto' controlId="ItemName">
                       <Form.Label className=''>
                         Item Name
                       </Form.Label>
@@ -88,7 +88,7 @@ function Denem() {
 
 
                     </Form.Group>
-                    <Form.Group className='d-flex' controlId="ItemPrice">
+                    <Form.Group className='d-flex' style={{marginTop:"1em"}} controlId="ItemPrice">
                       <Form.Label>
                         Item Price
                       </Form.Label>
@@ -102,7 +102,7 @@ function Denem() {
 
                     </Form.Group>
 
-                    <Form.Group className='d-flex m-auto' controlId="ItemStock">
+                    <Form.Group className='d-flex m-auto' style={{marginTop:"1em"}} controlId="ItemStock">
                       <Form.Label>
                         Item Stock
                       </Form.Label>
@@ -116,7 +116,7 @@ function Denem() {
 
                     </Form.Group>
 
-                    <div className='row justify-content-center'>
+                    <div className='row justify-content-center' style={{marginTop:"1em"}}>
                     <div className='col-3'><Form.Group className=''><Button variant="primary" type="submit">
                       Update
                     </Button></Form.Group></div>
