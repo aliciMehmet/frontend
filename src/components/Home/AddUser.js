@@ -13,20 +13,13 @@ export default function AddUser() {
 
     const handleAddUser = (e) => {
         e.preventDefault();
-        
-
-
-        let newuser = {
             
-            username: e.target.UserName.value,
-            password: e.target.UserPassword,
-            businessId: user.businessId,
-            role: e.target.UserRole.value,
-        };
+           let username=e.target.UserName.value
+           let password= e.target.UserPassword.value
+           let  role= e.target.UserRole.value
         
-        console.log(newuser);
         let businessService = new BusinessService();
-        businessService.addUser(newuser).then(result => {
+        businessService.addUser(username,password,role,user.token).then(result => {
             toast.success("User added successfully");
             Navigate("/manageEmployees");
 
