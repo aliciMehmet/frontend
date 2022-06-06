@@ -1,6 +1,6 @@
 import { Business } from '@mui/icons-material';
 import React, { useEffect, useState } from 'react'
-import { Row, Col, Container } from 'react-bootstrap';
+import { Row, Col, Container, Button } from 'react-bootstrap';
 import { AuthContext } from '../../context/AuthContext';
 import BusinessService from '../../services/BusinessService';
 import { BusinessNavi } from '../BusinessNavi';
@@ -15,13 +15,14 @@ export default function ManageEmployees() {
     const [waiters, setWaiters] = useState([])
     const [kitchen, setKitchen] = useState([])
 
-    const deleteUser = (item) => {
+    const deleteUser = (userId) => {
         if (window.confirm('Are you sure?')) {
-          console.log(user.id);
-          let businessService = new BusinessService();
-          businessService.deleteUser(user).then(result => toast.success("Item deleted successfully"))
-    
-        }}
+            console.log(user.id);
+            let businessService = new BusinessService();
+            businessService.deleteUser(userId).then(result => toast.success("User deleted successfully"))
+
+        }
+    }
 
     useEffect(() => {
         let businessService = new BusinessService();
@@ -30,20 +31,21 @@ export default function ManageEmployees() {
 
                 console.log(result.data.data)
                 setWaiters(result.data.data)
-                
 
 
-            }})
 
-            businessService.getEmployee(user.token, "KITCHEN").then(result => {
-                if (result.data != null) {
-    
-                    console.log(result.data)
-                    setKitchen(result.data.data)
-                    
-    
-    
-                }
+            }
+        })
+
+        businessService.getEmployee(user.token, "KITCHEN").then(result => {
+            if (result.data != null) {
+
+                console.log(result.data)
+                setKitchen(result.data.data)
+
+
+
+            }
         })
     }, []);
 
@@ -71,19 +73,19 @@ export default function ManageEmployees() {
                                         <tr key={us.id}>
                                             <td>{us.id}</td>
                                             <td>{us.username}</td>
-                                            
+
 
                                             <td>{us.businessId}</td>
                                             <td>{us.role}</td>
 
-
-                                            {/* <td><button className="btn btn-warning" onClick={() => this.deleteTodoClicked(todo.id)}>Delete</button></td> */}
+                                            <td><Button onClick={() => deleteUser(us.id)} variant="danger" className>Delete</Button></td>
+                                            {/* <td><button className="btn btn-warning" onClick={() => this.deleteUser(us.id)}>Delete</button></td> */}
                                         </tr>
                                 )
                             }
                         </tbody>
                     </table>
-                    
+
                 </div>
             </div>
 
@@ -108,10 +110,12 @@ export default function ManageEmployees() {
                                         <tr key={us.id}>
                                             <td>{us.id}</td>
                                             <td>{us.username}</td>
-                                            
+
 
                                             <td>{us.businessId}</td>
                                             <td>{us.role}</td>
+                                            <td><Button onClick={() => deleteUser(us.id)} variant="danger" className>Delete</Button></td>
+
 
 
                                             {/* <td><button className="btn btn-warning" onClick={() => this.deleteTodoClicked(todo.id)}>Delete</button></td> */}
@@ -121,9 +125,9 @@ export default function ManageEmployees() {
                         </tbody>
                     </table>
                     <div className="row d-flex justify-content-center" >
-                    <Link to="/addUser">
-              <button style={{  marginBottom: "50px" }} className='btn btn-primary align-center'>Add an employee</button>
-              </Link>
+                        <Link to="/addUser">
+                            <button style={{ marginBottom: "50px" }} className='btn btn-primary align-center'>Add an employee</button>
+                        </Link>
 
 
                     </div>
