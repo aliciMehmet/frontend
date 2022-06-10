@@ -66,6 +66,14 @@ function WaiterHome({ user }) {
     setCalls(remainingCalls)
   }
 
+  const handleCompleteOrder = (tableId) => {
+    let remainingOrders = tables.filter((table) => {
+      return table.id != tableId
+    })
+
+    setTables(remainingOrders) 
+  }
+
   return (
 
     <div>
@@ -89,7 +97,7 @@ function WaiterHome({ user }) {
                   <div className='d-flex justify-content-center' style={{ marginTop: '2em' }}>
 
                     {/* <Link to={"detail/" + product.id} key={product.id}> */}
-                    <Button variant="primary"  className>Complete Order</Button>
+                    <Button variant="primary" onClick={() => handleCompleteOrder(table.id)}  className>Complete Order</Button>
                     {/* </Link> */}
 
                   </div>
